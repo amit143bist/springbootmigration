@@ -1,0 +1,60 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8190/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
+dsmigrationauthentication:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 1200
+
+spring:
+  application:
+    name: dsmigrationwebsite
+  profiles:
+    active: dev
+  mvc:
+    view:
+      prefix: /views/
+      suffix: .html
+
+server:
+  servlet:
+    context-path: /report
+
+#mIgratIonpassword1
+migration:
+  application:
+    username: migrationuser
+    password: $2a$04$YWJNQctHEuSfzppkd1uQ6ugb8I/OfUaulwWTZra1AXoGA/L7CAGr6
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+oracle:
+  api:
+    url: https://a6af0687-e9ae-432b-ab9b-e78021542430.mock.pstmn.io/api/v3
+    jwt:
+      url: https://a6af0687-e9ae-432b-ab9b-e78021542430.mock.pstmn.io/api/v2
+      user: user1
+      password: password1
+      audience: ibis
+
+docusign:
+  api:
+    scopes: signature impersonation
+    user: 8e7f66a5-50c1-498c-8513-c403a35ea3cb

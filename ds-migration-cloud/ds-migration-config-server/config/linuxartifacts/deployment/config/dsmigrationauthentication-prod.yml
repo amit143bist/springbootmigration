@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: dsmigrationauthentication
+  profiles:
+    active: prod
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+#mIgratIonpassword1
+migration:
+  application:
+    username: migrationuser
+    password: 0c008ca6764a3cc230c541a7a99b0f8359dc5ef918c17d12c0292cca4250dea95e1f26271a7e30a6
+    dsenvironment: account.docusign.com
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+ds:
+  authorization:
+    rsaPrivateKeyPath: /home/migration/deployment/config/ds-private.key
+    rsaPublicKeyPath: /home/migration/deployment/config/ds-public.key
+  migration:
+    api:
+      integratorKey: 08b52027-7d48-4b79-b9f3-378774242f2e
+    token:
+      expirationSeconds: 3600
+      cacheExpirationSeconds: 1800
+      testtoken: 

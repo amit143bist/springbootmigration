@@ -1,0 +1,34 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+      discovery:
+        enabled: false
+    discovery:
+      enabled: false
+  profiles:
+    active: unittest
+pronto:
+  service:
+    baseurl: https://a6af0687-e9ae-432b-ab9b-e78021542430.mock.pstmn.io/api/v3/documents
+    
+oracle:
+  ibis:
+    tokentype: Bearer
+    accesstoken: tokenvalue
+    
+migration:
+  application:
+    username: migrationuser
+    password: 0c008ca6764a3cc230c541a7a99b0f8359dc5ef918c17d12c0292cca4250dea95e1f26271a7e30a6
+    async:
+        executornameprefix: DSExecutor-
+        corepoolsize: 20
+        maxpoolsize: 40
+        queuecapacity: 10000
+        
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

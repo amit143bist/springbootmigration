@@ -1,0 +1,32 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+      discovery:
+        enabled: false
+    discovery:
+      enabled: false
+  profiles:
+    active: unittest
+
+migration:
+  application:
+    username: migrationuser
+    password: 0c008ca6764a3cc230c541a7a99b0f8359dc5ef918c17d12c0292cca4250dea95e1f26271a7e30a6
+    dsenvironment: account-d.docusign.com
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+ds:
+  authorization:
+    rsaPrivateKeyPath: src/test/resources/keys/ds-private.key
+    rsaPublicKeyPath: src/test/resources/keys/ds-public.key
+  migration:
+    api:
+      integratorKey: 56a8ab0f-3b50-4bfd-b0bd-1f6791db292b
+    token:
+      expirationSeconds: 3600
+      cacheExpirationSeconds: 4

@@ -1,0 +1,57 @@
+a. Root CA:
+
+1. Generate our private key:
+		openssl genrsa -des3 -out myCA.key 2048
+		Paraphrase: testing1
+
+2. Generate a root certificate
+openssl req -x509 -new -nodes -key myCA.key -sha256 -days 1825 -out myCA.pem
+
+Convert myCA.pem to myCA.crt
+openssl x509 -outform der -in myCA.pem -out myCA.crt
+
+b. Install Root CA in local Trusted Root
+
+
+c. Creating CA-Signed Certificates for Your Dev Sites - mock.pronto.com
+
+Create Private Key:
+openssl genrsa -out mock.pronto.com.key 2048
+
+Create a CSR (certificate signing request )
+openssl req -new -key mock.pronto.com.key -out mock.pronto.com.csr
+
+Create config file for Subject Alternative Name (SAN) - mock.pronto.com.ext
+
+openssl x509 -req -in mock.pronto.com.csr -CA myCA.pem -CAkey myCA.key -CAcreateserial -out mock.pronto.com.crt -days 1825 -sha256 -extfile mock.pronto.com.ext
+
+
+d. Creating CA-Signed Certificates for Your Dev Sites - mock.migration.com
+
+Create Private Key:
+openssl genrsa -out mock.migration.com.key 2048
+
+Create a CSR (certificate signing request )
+openssl req -new -key mock.migration.com.key -out mock.migration.com.csr
+
+Create config file for Subject Alternative Name (SAN) - mock.migration.com.ext
+
+openssl x509 -req -in mock.migration.com.csr -CA myCA.pem -CAkey myCA.key -CAcreateserial -out mock.migration.com.crt -days 1825 -sha256 -extfile mock.migration.com.ext
+
+
+e. Convert to pkcs12 format
+openssl pkcs12 -export -in mock.pronto.com.crt -inkey mock.pronto.com.key -out mock.pronto.com.p12 -name mock.pronto.com -CAfile myCA.pem -caname myCA -chain
+
+openssl pkcs12 -export -in mock.migration.com.crt -inkey mock.migration.com.key -out mock.migration.com.p12 -name mock.migration.com -CAfile myCA.pem -caname myCA -chain
+
+f. Create and/or import Java Key Store
+
+keytool -importkeystore -destkeystore migration.jks -srckeystore mock.pronto.com.p12 -srcstoretype pkcs12 -alias mock.pronto.com -deststoretype pkcs12
+
+keytool -importkeystore -destkeystore migration.jks -srckeystore mock.migration.com.p12 -srcstoretype pkcs12 -alias mock.migration.com -deststoretype pkcs12
+
+g. Create Trust Store:
+
+keytool -import -file myCA.crt -alias myCA -keystore migrationtruststore.jks
+keytool -import -file mock.migration.com.crt -alias mock.migration.com -keystore migrationtruststore.jks
+keytool -import -file mock.pronto.com.crt -alias mock.pronto.com -keystore migrationtruststore.jks

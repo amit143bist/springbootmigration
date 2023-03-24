@@ -1,0 +1,19 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  application:
+    name: dsmigrationbrokerconfig
+  profiles:
+     active: dev
+
+migration:
+    queue: 
+      name: COMMON_TEST_QUEUE
+      ttl: 120000
+    exchange:
+      name: TEST_EXCHANGE
+    routing:
+      key: COMMON_TEST_QUEUE

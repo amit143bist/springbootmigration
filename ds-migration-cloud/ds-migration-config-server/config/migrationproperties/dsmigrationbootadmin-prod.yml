@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: dsmigrationbootadmin
+  profiles:
+    active: prod
+      
+migration:
+    application:
+      username: migrationuser
+      password: mIgratIonpassword1
+       
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    register-with-eureka: false
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

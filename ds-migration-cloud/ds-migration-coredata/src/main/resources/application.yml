@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: dsmigrationcoredata
+  profiles:
+     active: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: testing1
+    
+server:
+  port: 8290
+ 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8190/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
+
+#mIgratIonpassword1
+migration:
+  application:
+    username: migrationuser
+    password: 0c008ca6764a3cc230c541a7a99b0f8359dc5ef918c17d12c0292cca4250dea95e1f26271a7e30a6
+    hazelcast:
+      lockduration: 2000
+      
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

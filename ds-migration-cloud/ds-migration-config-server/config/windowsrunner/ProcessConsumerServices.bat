@@ -1,0 +1,17 @@
+@echo off
+set _JAVA_OPTIONS=-Xms1024m -Xmx4096m -XX:NewSize=64m -XX:MaxNewSize=128m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=256m -Xss512k -XX:InitialCodeCacheSize=128m -XX:ReservedCodeCacheSize=256m -XX:MaxDirectMemorySize=256m -XX:-TieredCompilation -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=C:\textura\dumps -XX:OnOutOfMemoryError="shutdown -r" -XX:+UseGCOverheadLimit
+set logFileMaxSize="500MB"
+
+start "ds-migration-processstart-consumer" cmd.exe /k java -jar -Dserver.port=8690 -Dlogging.file=C:\textura\applogs\processstartconsumer\8690.log -Dlogging.file.max-size=%logFileMaxSize% -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-processstart-consumer\target\ds-migration-processstart-consumer-0.0.1-SNAPSHOT.jar
+
+start "ds-migration-auditdata-consumer" cmd.exe /k java -jar -Dserver.port=8590 -Dlogging.file=C:\textura\applogs\auditdataconsumer\8590.log -Dlogging.file.max-size=%logFileMaxSize% -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-auditdata-consumer\target\ds-migration-auditdata-consumer-0.0.1-SNAPSHOT.jar
+
+start "ds-migration-recorddata-consumer" cmd.exe /k java -jar -Dserver.port=9090 -Dlogging.file=C:\textura\applogs\recorddataconsumer\9090.log -Dlogging.file.max-size=%logFileMaxSize% -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-recorddata-consumer\target\ds-migration-recorddata-consumer-0.0.1-SNAPSHOT.jar
+
+start "ds-migration-processfailure-consumer" cmd.exe /k java -jar -Dserver.port=8790 -Dlogging.file=C:\textura\applogs\processfailureconsumer\8790.log -Dlogging.file.max-size=%logFileMaxSize% -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-processfailure-consumer\target\ds-migration-processfailure-consumer-0.0.1-SNAPSHOT.jar
+
+start "ds-migration-batchtrigger-consumer" cmd.exe /k java -jar -Dserver.port=9190 -Dlogging.file=C:\textura\applogs\batchtriggerconsumer\9190.log -Dlogging.file.max-size=%logFileMaxSize% -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-batchtrigger-consumer\target\ds-migration-batchtrigger-consumer-0.0.1-SNAPSHOT.jar
+
+start "ds-migration-processcomplete-consumer" cmd.exe /k java -jar -Dserver.port=8890 -Dlogging.file=C:\textura\applogs\processcompleteconsumer\8890.log -Dlogging.file.max-size=%logFileMaxSize% -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-processcomplete-consumer\target\ds-migration-processcomplete-consumer-0.0.1-SNAPSHOT.jar
+
+start "ds-migration-prontodata-consumer" cmd.exe /k java -jar -Dserver.port=8990 -Dlogging.file=C:\textura\applogs\prontodataconsumer\8990.log -Dlogging.file.max-size=%logFileMaxSize% -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-prontodata-consumer\target\ds-migration-prontodata-consumer-0.0.1-SNAPSHOT.jar

@@ -1,0 +1,42 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: testing1
+  cloud:
+    config:
+      enabled: false
+      discovery:
+        enabled: false
+    discovery:
+      enabled: false
+  profiles:
+    active: unittest
+
+migration:
+  application:
+    username: migrationuser
+    password: mIgratIonpassword1
+    queue:
+      name: CORE_PARALLEL_PROCESS_END_QUEUE
+      ttl: 2000
+      failure:
+        retrylimit: 2
+    exchange:
+      name: MIGRATION_EXCHANGE
+    routing:
+      key: CORE_PARALLEL_PROCESS_END_QUEUE
+      
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
+spring.jpa.hibernate.cache.use_second_level_cache: true
+spring.jpa.hibernate.cache.use_query_cache: true
+spring.jpa.hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+spring.main.allow-bean-definition-overriding: true
+logging.level.org.hibernate.SQL: DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE

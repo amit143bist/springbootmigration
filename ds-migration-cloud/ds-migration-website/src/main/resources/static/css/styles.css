@@ -1,0 +1,268 @@
+body {
+    background: white fixed no-repeat left top;
+    font-size: 9pt;
+    font-family: Arial, sans-serif;
+    color: black;
+    webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+table {
+    width: 100%;
+}
+
+.table-users {
+    border: 0.5px solid #D6DBDF;
+    border-radius: 16px;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+    max-width: calc(100% - 2em);
+    margin: 1em auto;
+    overflow: hidden;
+    width: 75%;
+}
+
+.table-users.h1 {
+    box-shadow: 0px 0px 0 rgba(0, 0, 0, 0);
+    margin: 0em auto;
+    border: 0px
+}
+
+table td,
+table th {
+    padding: 4px;
+}
+
+table td {
+    font-size: 9pt;
+    text-align: center;
+    vertical-align: middle;
+    text-align: left;
+}
+
+table td:last-child {
+    font-size: 12pt;
+    line-height: 1.4;
+    text-align: left;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+p {
+    font-size: 9pt;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+td {
+    font-size: 9pt;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.header {
+    background-color: #2980b9;
+    color: white;
+    font-size: 1em;
+    padding: 10px 12px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14pt;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header.green {
+    background-color: #555;
+}
+
+a:link {
+    background: none transparent scroll repeat 0% 0%;
+    color: #000099;
+    text-decoration: underline;
+    font-size: 12pt;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+a:visited {
+    background: none transparent scroll repeat 0% 0%;
+    color: #000099;
+    text-decoration: underline;
+    font-size: 12pt;
+    text-transform: uppercase;
+}
+
+a:active {
+    background: none transparent scroll repeat 0% 0%;
+    color: #000099;
+    text-decoration: underline;
+    font-size: 12pt;
+    text-transform: uppercase;
+}
+
+a:hover {
+    background: #ffa;
+    color: #000099;
+    text-decoration: underline;
+    font-size: 12pt;
+    text-transform: uppercase;
+}
+
+.page {
+    width: 100%;
+    clear: both;
+}
+
+.content {
+    font-size: 12pt;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.content-text {
+    margin: 0px 0px 0px 0px;
+    font-size: 12pt;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.content-large {
+    margin: 1em 2em 1em 2em;
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.content-small {
+    margin: 1em 2em 1em 2em;
+    font-size: 10pt;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.head {
+    font-size: 10pt;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #cc0033;
+}
+
+.headsmall {
+    font-size: 10pt;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #cc0033;
+}
+
+.inline-bold {
+    text-align: left;
+    margin: 0px 0px 0pt 0px;
+    font: 10pt Arial, sans-serif;
+    color: #003333;
+}
+
+.textsmall {
+    margin: 0px 0px 0px 0px;
+    font-size: 8pt;
+    font-family: Arial, sans-serif;
+    color: black;
+}
+
+.sepbar {
+    FONT-SIZE: 5px;
+    BACKGROUND: #cc0033;
+}
+
+.hide {
+    display: none;
+}
+
+.greybox {
+    background-color: #EBF5FB;
+    border-left: '1px solid black';
+    border-top: '1px solid black';
+    border-bottom: '1px solid black';
+    border-right: '1px solid black';
+    font-size: 14pt;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-family: 'Arial', 'sans-serif';
+    font-weight: bold;
+    font-size: 16pt;
+    text-align: center;
+}
+
+.table-users.h12 {
+    border: 0px;
+    box-shadow: 0px 0px 0 rgba(0, 0, 0, 0);
+    text-align: right;
+}
+
+.active22, .collapsible22:hover {
+    background-color: #555;
+}
+
+#loaderImage{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
+/* [THE BASE] */
+.bar {
+    padding: 10px;
+    margin: 10px;
+    color: #333;
+    background: #fafafa;
+    border: 1px solid #ccc;
+}
+
+/* [THE VARIATIONS] */
+.info {
+    color: #204a8e;
+    background: #c9ddff;
+    border: 1px solid #4c699b;
+}
+.success {
+    color: #2b7515;
+    background: #ecffd6;
+    border: 1px solid #617c42;
+}
+.warn {
+    color: #756e15;
+    background: #fffbd1;
+    border: 1px solid #87803e;
+}
+.error {
+    color: #ba3939;
+    background: #ffe0e0;
+    border: 1px solid #a33a3a;
+    font-size: 18px;
+}
+
+#container {
+    display:table;
+    border-collapse:collapse;
+    height:400px;
+    width:100%;
+    border:0px solid #000;
+}
+#layout {
+    display:table-row;
+}
+#content {
+    display:table-cell;
+    text-align:center;
+    vertical-align:middle;
+}

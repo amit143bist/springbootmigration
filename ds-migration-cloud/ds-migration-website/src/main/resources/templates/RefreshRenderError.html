@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+    <title>The Signing Report</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div id="loaderImage"></div>
+<div class="table-users h1">
+    <table border="0px" v>
+        <tr style="background-color:#ffffff">
+            <td style="text-align: left;width: 33%"><img src="data:image/png;base64,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" alt="Oracle Company Logo" height="22"  style="border:none;vertical-align:middle;"></td>
+            <td style="text-align: right;width: 34%">
+                <div style="font-size:11px;">Powered By <img src="images/logo_docusign_new.png" height="22" style="border:none;vertical-align:middle;" alt="DocuSign company logo"></div>
+            </td>
+        </tr>
+
+
+    </table>
+
+</div>
+<div id="container">
+    <div id="layout">
+        <div id="content">
+            <h1>This page cannot be refreshed.  Please retry your original request to load your signature audit details page.</h1>
+            <h1> For assistance, please call Textura Customer Support at 1-(866) 839-8872</h1>
+        </div>
+    </div>
+</div>
+</body>
+</html>

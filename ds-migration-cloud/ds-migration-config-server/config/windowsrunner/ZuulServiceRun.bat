@@ -1,0 +1,4 @@
+@echo off
+set _JAVA_OPTIONS=-Xms64m -Xmx256m -XX:NewSize=64m -XX:MaxNewSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=64m -Xss256k -XX:InitialCodeCacheSize=16m -XX:ReservedCodeCacheSize=64m -XX:MaxDirectMemorySize=32m -XX:-TieredCompilation -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=C:\textura\dumps -XX:OnOutOfMemoryError="shutdown -r" -XX:+UseGCOverheadLimit
+
+start "ds-migration-zuul-proxy" cmd.exe /k java -jar -Dserver.port=2020 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-zuul-proxy\target\ds-migration-zuul-proxy-0.0.1-SNAPSHOT.jar

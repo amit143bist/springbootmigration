@@ -1,0 +1,15 @@
+# /etc/systemd/system/configserver@8090.service
+
+[Unit]
+Description=DS Migration Config Service
+
+[Service]
+WorkingDirectory=/home/migration/deployment/configserver
+User=migration
+
+ExecStart=/usr/bin/java -Xms128m -Xmx256m -XX:NewSize=64m -XX:MaxNewSize=64m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=64m -Xss256k -XX:InitialCodeCacheSize=16m -XX:ReservedCodeCacheSize=64m -XX:MaxDirectMemorySize=32m -XX:-TieredCompilation -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/migration/deployment/configserver -XX:+UseGCOverheadLimit -Dlogging.file=%i.log -Dserver.port=%i -Dlogging.path=/home/migration/deployment/configserver -Dlogging.file.max-size=500MB -Dcloud.config.searchLocations=/home/migration/deployment/config -jar ds-migration-config-server-0.0.1-SNAPSHOT.jar
+
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

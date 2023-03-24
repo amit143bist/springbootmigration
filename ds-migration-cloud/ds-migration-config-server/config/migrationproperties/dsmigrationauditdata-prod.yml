@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: dsmigrationauditdata
+  profiles:
+     active: prod
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?reWriteBatchedInserts=true
+    username: postgres
+    password: testing1
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+spring.jpa.properties.hibernate.jdbc.batch_size: 20
+spring.jpa.properties.hibernate.order_inserts: true
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
+
+#mIgratIonpassword1
+migration:
+  application:
+    username: migrationuser
+    password: 0c008ca6764a3cc230c541a7a99b0f8359dc5ef918c17d12c0292cca4250dea95e1f26271a7e30a6
+    
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,0 +1,27 @@
+spring:
+  rabbitmq:
+    host: localhost 
+    port: 5672 
+    username: dsmigration
+    password: password 
+    virtual-host: /
+  application:
+    name: dsmigrationshell
+  profiles:
+     active: test
+    
+migration:
+    application:
+      username: migrationuser
+      password: mIgratIonpassword1
+    queue: 
+      name: CORE_BATCH_TRIGGER_QUEUE
+      ttl: 2000
+      failure:
+        retrylimit: 2
+    exchange:
+      name: MIGRATION_EXCHANGE
+    routing:
+      key: CORE_BATCH_TRIGGER_QUEUE
+    validatecount:
+      queues: CORE_AUDIT_DATA_QUEUE,CORE_BATCH_TRIGGER_QUEUE,CORE_PARALLEL_PROCESS_END_QUEUE,CORE_PARALLEL_PROCESS_START_QUEUE,SAVE_DOCUSIGNID_MIGRATION_QUEUE,SAVE_DOCUSIGNID_PRONTO_QUEUE

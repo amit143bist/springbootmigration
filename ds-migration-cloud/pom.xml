@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+	<modelVersion>4.0.0</modelVersion>
+    <groupId>com.ds.migration.cloud</groupId>
+    <artifactId>ds-migration-cloud</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>ds-migration-cloud</name>
+    <packaging>pom</packaging>
+   
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.8.RELEASE</version>
+		<relativePath />
+	</parent>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring.shell.version>2.0.1.RELEASE</spring.shell.version>
+		<migration-cloud.version>0.0.1-SNAPSHOT</migration-cloud.version>
+		<spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+		<auth0-jwt.version>3.8.2</auth0-jwt.version>
+		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+		<jsoup.version>1.12.1</jsoup.version>
+		<spring-boot-admin.version>2.1.6</spring-boot-admin.version>
+		<netflix-zuul.version>2.1.3.RELEASE</netflix-zuul.version>
+	</properties>
+
+    <modules>
+		<module>ds-migration-common</module>
+		<module>ds-migration-feignservice</module>
+		<module>ds-migration-security-config</module>
+		<module>ds-migration-broker-config</module>
+		<module>ds-migration-config-server</module>
+		<module>ds-migration-eureka-server</module>
+		<module>ds-migration-coredata</module>
+		<module>ds-migration-auditdata</module>
+		<module>ds-migration-prontodata</module>
+        <module>ds-migration-authentication</module>
+		<module>ds-migration-processfailure-consumer</module>
+		<module>ds-migration-auditdata-consumer</module>
+		<module>ds-migration-prontodata-consumer</module>
+		<module>ds-migration-processcomplete-consumer</module>
+		<module>ds-migration-batchtrigger-consumer</module>
+		<module>ds-migration-recorddata-consumer</module>
+		<module>ds-migration-processstart-consumer</module>
+		<module>ds-migration-zuul-proxy</module>
+		<module>ds-migration-website</module>
+		<module>ds-migration-boot-admin</module>
+		<module>ds-migration-admin-tool</module>
+		<module>ds-migration-shell</module>
+    </modules>
+	
+</project>

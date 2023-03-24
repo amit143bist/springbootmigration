@@ -1,0 +1,2 @@
+migrateProntoData numberOfHours 10 numberOfRecordsPerThread 200
+exit

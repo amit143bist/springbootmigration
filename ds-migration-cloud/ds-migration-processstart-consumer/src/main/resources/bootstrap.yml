@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8090
+  application:
+    name: dsmigrationprocessstartconsumer
+  profiles:
+    active: dev

@@ -1,0 +1,2 @@
+migrateProntoData batchStartDateTime 2019-10-09T22:53:26.646 batchEndDateTime 2019-10-23T03:53:26.647 numberOfRecordsPerThread 200
+exit

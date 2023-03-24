@@ -1,0 +1,75 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:
+      simple:
+        default-requeue-rejected: false
+  application:
+    name: dsmigrationbatchtriggerconsumer
+  profiles:
+    active: prod
+      
+migration:
+    application:
+      username: migrationuser
+      password: mIgratIonpassword1
+    queue: 
+      name: CORE_BATCH_TRIGGER_QUEUE
+      ttl: 2000
+      failure:
+        retrylimit: 2
+    exchange:
+      name: MIGRATION_EXCHANGE
+    routing:
+      key: CORE_BATCH_TRIGGER_QUEUE
+    processstartqueue:
+      name: CORE_PARALLEL_PROCESS_START_QUEUE
+      senddelay: 2000
+      messagespergroup: 30
+      threadpoolsize: 5000
+       
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+feign.client.config.default.connectTimeout: 2000000
+feign.client.config.default.readTimeout: 2000000
+
+dsmigrationprontodata:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 2000
+    ConnectTimeout: 30000
+    ReadTimeout: 30000
+       
+dsmigrationcoredata:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 2000
+    ConnectTimeout: 30000
+    ReadTimeout: 30000
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

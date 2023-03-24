@@ -1,0 +1,100 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:      simple:        default-requeue-rejected: false
+        concurrency: 12
+        max-concurrency: 20
+        prefetch: 1  application:
+    name: dsmigrationprocessstartconsumer
+  profiles:
+    active: dev
+      
+migration:
+    application:
+      username: migrationuser
+      password: mIgratIonpassword1
+      totalrecordsperqueuemessage: 20
+      markprocesscompleteonerror: false
+      async:
+        executornameprefix: DSExecutor-
+        corepoolsize: 5
+        maxpoolsize: 10
+        queuecapacity: 100
+      connection:
+        ds:
+          proxyhost: 
+          proxyport:
+        pronto:
+          proxyhost:
+          proxyport:  
+    queue: 
+      name: CORE_PARALLEL_PROCESS_START_QUEUE
+      ttl: 2000
+      failure:
+        retrylimit: 2
+    exchange:
+      name: MIGRATION_EXCHANGE
+    routing:
+      key: CORE_PARALLEL_PROCESS_START_QUEUE
+    failurequeue: 
+      name: CORE_PARALLEL_PROCESS_FAILURE_QUEUE
+    processcompletequeue: 
+      name: CORE_PARALLEL_PROCESS_END_QUEUE
+    auditqueue: 
+      name: CORE_AUDIT_DATA_QUEUE      
+    prontoqueue: 
+      name: SAVE_DOCUSIGNID_PRONTO_QUEUE
+    recordqueue: 
+      name: SAVE_DOCUSIGNID_MIGRATION_QUEUE
+    prontoapplication:
+      uri: https://cpm.texturacorp.com/prontosvr2/
+    docusign:
+      baseuri: https://stage.docusign.net/restapi/v2.1/accounts/
+      accountguid: c5326194-5139-4814-a667-3f4f003cb853
+      envelopeuri: /envelopes/envelopearchive
+      envelopearchiveavailable: true
+      ccname: Test User
+      ccemail: test@test.com
+      emailsubject: Migration
+    dsmigrationauthentication:
+      userid: fbf8ad6f-9c21-4b9c-a60b-1a6eb04ffffe
+      scopes: signature impersonation
+      legacyauthentication: 
+      
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8190/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
+dsmigrationprontodata:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 1200
+
+dsmigrationauthentication:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 1200
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

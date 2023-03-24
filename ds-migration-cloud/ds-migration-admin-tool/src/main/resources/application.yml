@@ -1,0 +1,48 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  application:
+    name: dsmigrationadmintool
+  profiles:
+    active: dev
+      
+migration:
+    application:
+      username: migrationuser
+      password: mIgratIonpassword1
+    processcompletequeue: 
+      name: CORE_PARALLEL_PROCESS_END_QUEUE
+    processstartqueue: 
+      name: CORE_PARALLEL_PROCESS_START_QUEUE
+            
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8190/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+        
+dsmigrationcoredata:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 1200
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

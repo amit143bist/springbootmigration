@@ -1,0 +1,18 @@
+# /etc/systemd/system/prontodata@8490.service
+# /etc/systemd/system/prontodata@8491.service
+# /etc/systemd/system/prontodata@8492.service
+# /etc/systemd/system/prontodata@8493.service
+
+[Unit]
+Description=ProntoData Service
+
+[Service]
+WorkingDirectory=/home/migration/deployment/prontodata
+User=migration
+
+ExecStart=/usr/bin/java -Xms256m -Xmx2048m -XX:NewSize=64m -XX:MaxNewSize=128m -XX:MaxMetaspaceSize=128m -XX:CompressedClassSpaceSize=256m -Xss512k -XX:InitialCodeCacheSize=128m -XX:ReservedCodeCacheSize=256m -XX:MaxDirectMemorySize=256m -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+HeapDumpOnOutOfMemoryError -XX:+UseGCOverheadLimit -XX:HeapDumpPath=/home/migration/deployment/prontodata -Dlogging.file=%i.log -Dserver.port=%i -Dlogging.path=/home/migration/deployment/prontodata -Dlogging.file.max-size=500MB -Dspring.profiles.active=prod -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 -jar ds-migration-prontodata-0.0.1-SNAPSHOT.jar
+
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

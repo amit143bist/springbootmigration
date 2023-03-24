@@ -1,0 +1,29 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    config:
+      enabled: false
+      discovery:
+        enabled: false
+    discovery:
+      enabled: false
+  profiles:
+    active: unittest
+
+migration:
+  application:
+    username: migrationuser
+    password: mIgratIonpassword1
+    queue:
+      name: CORE_AUDIT_DATA_QUEUE
+      ttl: 2000
+      failure:
+        retrylimit: 2
+    exchange:
+      name: MIGRATION_EXCHANGE
+    routing:
+      key: CORE_AUDIT_DATA_QUEUE

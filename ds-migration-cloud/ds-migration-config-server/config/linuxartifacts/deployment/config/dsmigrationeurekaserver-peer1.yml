@@ -1,0 +1,45 @@
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      # By default, only 'health' and 'info' are accessible via web
+      exposure:
+        include: "*"
+ 
+---
+spring:
+  profiles: peer1
+eureka:
+  instance:
+    # See blog post for details, modify /etc/hosts
+    hostname: peer1
+    # Either this one or the spring boot name must be the same
+    # (it works without setting it too, using the alias UNKNOWN)
+    appname: dsmigrationeurekaserver
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:${mig.peer2Port}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+server:
+  port: ${mig.peer1Port}
+ 
+---
+spring:
+  profiles: peer2
+eureka:
+  instance:
+    hostname: peer2
+    appname: dsmigrationeurekaserver
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:${mig.peer1Port}/eureka
+    register-with-eureka: true
+    fetch-registry: true
+server:
+  port: ${mig.peer2Port}

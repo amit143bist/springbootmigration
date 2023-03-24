@@ -1,0 +1,33 @@
+java -jar -Dserver.port=8090 -Dcloud.config.searchLocations=/C:/config/ C:\textura\ds-migration-cloud\ds-migration-config-server\target\ds-migration-config-server-0.0.1-SNAPSHOT.jar
+
+java -jar -Dspring.profiles.active=peer1 -Dmig.peer1Port=8190 -Dmig.peer2Port=8191 C:\textura\ds-migration-cloud\ds-migration-eureka-server\target\ds-migration-eureka-server-0.0.1-SNAPSHOT.jar
+
+java -jar -Dspring.profiles.active=peer2 -Dmig.peer1Port=8190 -Dmig.peer2Port=8191 C:\textura\ds-migration-cloud\ds-migration-eureka-server\target\ds-migration-eureka-server-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8290 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-coredata\target\ds-migration-coredata-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8291 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-coredata\target\ds-migration-coredata-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8390 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-auditdata\target\ds-migration-auditdata-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8490 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-prontodata\target\ds-migration-prontodata-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8590 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-auditdata-consumer\target\ds-migration-auditdata-consumer-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8690 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-processstart-consumer\target\ds-migration-processstart-consumer-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8790 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-processfailure-consumer\target\ds-migration-processfailure-consumer-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8890 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-processcomplete-consumer\target\ds-migration-processcomplete-consumer-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=8990 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-prontodata-consumer\target\ds-migration-prontodata-consumer-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=9090 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-recorddata-consumer\target\ds-migration-recorddata-consumer-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=9190 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-batchtrigger-consumer\target\ds-migration-batchtrigger-consumer-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=9200 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-batchtrigger-consumer\target\ds-migration-authentication-0.0.1-SNAPSHOT.jar
+
+java -jar -Dserver.port=9290 -Dspring.profiles.active=dev -Dmig.peer1-address=peer1:8190 -Dmig.peer2-address=peer2:8191 C:\textura\ds-migration-cloud\ds-migration-website\target\ds-migration-website-0.0.1-SNAPSHOT.jar
+
+java -jar -Dspring.profiles.active=dev C:\textura\ds-migration-cloud\ds-migration-shell\target\ds-migration-shell-0.0.1-SNAPSHOT.jar @C:\textura\shellcommand.txt

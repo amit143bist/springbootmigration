@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: dsmigrationzuulproxy
+  profiles:
+    active: prod
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    registerWithEureka: false
+    fetchRegistry: true
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+zuul:
+  ribbon:
+      eager-load:
+         enabled: true
+  routes:
+    dsmigrationwebsite:
+      path: /prontosvr2/**
+      serviceId: dsmigrationwebsite
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+#mIgratIonpassword1
+migration:
+  application:
+    username: migrationuser
+    password: 0c008ca6764a3cc230c541a7a99b0f8359dc5ef918c17d12c0292cca4250dea95e1f26271a7e30a6
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

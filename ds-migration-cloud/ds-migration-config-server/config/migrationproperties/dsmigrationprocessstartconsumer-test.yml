@@ -1,0 +1,109 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    listener:      simple:        default-requeue-rejected: false
+        concurrency: 10
+        max-concurrency: 20
+        prefetch: 50
+  application:
+    name: dsmigrationprocessstartconsumer
+  profiles:
+    active: test
+      
+migration:
+    application:
+      username: migrationuser
+      password: mIgratIonpassword1
+      totalrecordsperqueuemessage: 20
+      markprocesscompleteonerror: false
+      async:
+        executornameprefix: DSExecutor-
+        corepoolsize: 30
+        maxpoolsize: 600
+        queuecapacity: 20000
+      connection:
+        ds:
+          proxyhost: 
+          proxyport:
+        pronto:
+          proxyhost:
+          proxyport:
+    queue: 
+      name: CORE_PARALLEL_PROCESS_START_QUEUE
+      ttl: 2000
+      failure:
+        retrylimit: 2
+    exchange:
+      name: MIGRATION_EXCHANGE
+    routing:
+      key: CORE_PARALLEL_PROCESS_START_QUEUE
+    failurequeue: 
+      name: CORE_PARALLEL_PROCESS_FAILURE_QUEUE
+    processcompletequeue: 
+      name: CORE_PARALLEL_PROCESS_END_QUEUE
+    auditqueue: 
+      name: CORE_AUDIT_DATA_QUEUE
+    prontoqueue: 
+      name: SAVE_DOCUSIGNID_PRONTO_QUEUE
+    recordqueue: 
+      name: SAVE_DOCUSIGNID_MIGRATION_QUEUE
+    prontoapplication:
+      uri: https://cpm.texturacorp.com/prontosvr2/
+    docusign:
+      baseuri: https://hyousif01.hqtest.tst/restapi/v2.1/accounts/
+      accountguid: fdfa3ab1-2559-4c18-9d20-fc056e4f8cbe
+      envelopeuri: /envelopes/envelopearchive
+      envelopearchiveavailable: true
+      ccname: Test User
+      ccemail: test@test.com
+      emailsubject: Migration
+    dsmigrationauthentication:
+      userid: 8e7f66a5-50c1-498c-8513-c403a35ea3cb
+      scopes: signature impersonation
+      legacyauthentication: 
+       
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+feign.client.config.default.connectTimeout: 2000000
+feign.client.config.default.readTimeout: 2000000
+
+dsmigrationprontodata:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 2000
+    ConnectTimeout: 60000
+    ReadTimeout: 60000
+
+dsmigrationauthentication:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 2000
+    ConnectTimeout: 30000
+    ReadTimeout: 30000
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

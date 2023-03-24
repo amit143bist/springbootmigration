@@ -1,0 +1,11 @@
+package com.ds.migration.common.constant;
+
+public enum RecordProcessPhase {
+
+	FETCH_SIGNATURE_DETAILS,
+	PRONTO_DOC_VERIFY,
+	FETCH_PRONTO_DOC,
+	CREATE_DOCUSIGN_ARTIFACT,
+	DUPLICATE_RECORDID,
+	POST_DS_ID_ORACLE;
+}

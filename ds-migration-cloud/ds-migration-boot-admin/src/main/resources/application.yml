@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: dsmigrationbootadmin
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8190/eureka/
+    register-with-eureka: false
+  
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

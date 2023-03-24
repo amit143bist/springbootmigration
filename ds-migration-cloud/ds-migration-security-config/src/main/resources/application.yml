@@ -1,0 +1,4 @@
+migration:
+  application:
+    username: migrationuser
+    password: password

@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: dsmigrationwebsite
+  profiles:
+    active: prod
+  
+server:
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: C:/textura/config/migration.jks
+    key-store-password: testing1
+    key-alias: mock.migration.com
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: mock.migration.com
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+    nonSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: ${server.port}
+
+dsmigrationauthentication:
+  ribbon:
+    eureka:
+      enabled: true
+    ServerListRefreshInterval: 2000
+    ConnectTimeout: 30000
+    ReadTimeout: 30000
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    
+oracle:
+  ibis:
+    api:
+      url: https://a6af0687-e9ae-432b-ab9b-e78021542430.mock.pstmn.io/api/v3
+    jwt:
+      url: https://a6af0687-e9ae-432b-ab9b-e78021542430.mock.pstmn.io/api/v2
+      user: user1
+      password: password1
+      audience: ibis
+
+docusign:
+  api:
+    integratorKey: 8d72617c-675f-40e2-8f2e-439e5d2e95b2
+    scopes: signature impersonation
+    user: 8e7f66a5-50c1-498c-8513-c403a35ea3cb
+    baserUrl: https://demo.docusign.net/restapi
+    account: 78133686-fb7d-4aa8-acb2-8975242e2868

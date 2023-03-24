@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: dsmigrationprontodata
+  profiles:
+    active: prod
+
+pronto:
+  service:
+    baseurl: https://a6af0687-e9ae-432b-ab9b-e78021542430.mock.pstmn.io/api/v3/documents
+
+oracle:
+  ibis:
+    tokentype: Bearer
+    accesstoken: tokenvalue
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${mig.peer1-address}/eureka,http://${mig.peer2-address}/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+
+#mIgratIonpassword1
+migration:
+  application:
+    username: migrationuser
+    password: 0c008ca6764a3cc230c541a7a99b0f8359dc5ef918c17d12c0292cca4250dea95e1f26271a7e30a6
+    async:
+        executornameprefix: DSExecutor-
+        corepoolsize: 30
+        maxpoolsize: 40
+        queuecapacity: 90000000 
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    info:
+      enabled: true
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
